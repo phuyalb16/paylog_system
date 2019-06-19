@@ -3,7 +3,7 @@ from django.utils import timezone
 
 class Details(models.Model):
     name = models.CharField(max_length=200)
-    amount = models.CharField(max_length=200)
+    amount = models.FloatField()
     item = models.TextField()
     bought_date = models.DateTimeField(default=timezone.now)
 

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container text-center">
+    <h2 class="mb-4">Scroll/ Click on the <i class="fa fa-eye"></i> to view Customer </h2>
+    <div class="table-wrapper-scroll-y my-custom-scrollbar">
+        <form method="POST">
+              <table class= "table table-bordered table-dark" id="all_users_bdr">
+                <tbody class="text-center">
+                {% csrf_token %}
+                {% for user in users %}
+                      <tr>
+                          <th>
+                              <a>{{ user.name|upper }}</a>
+                            </th>
+                          <td>
+                              <button class="eyebtn" type="submit" name="search" value="{{user.name}}"> <i class="fa fa-eye"></i></button>
+                          </td>
+                      </tr>
+                {% endfor %}
+                </tbody>
+              </table>
+        </form>
+    </div>
+    <nav aria-label="Page navigation example" class="page_btn">
+        <div class="pagination">
+            <span class="step-links text-center">
+                {% if users.has_previous %}
+                    <span class="page-item">
+                        <a role="button" href="?page={{ users.previous_page_number }}" class=" btn btn-outline-info">Previous</a>
+                        <a href="?page=1" class="btn btn-outline-info">&laquo; First</a>
+                    </span>
+                {% endif %}
+                    <span class="current">
+                        Page {{ users.number }} of {{ users.paginator.num_pages }}
+                    </span>
+                {% if users.has_next %}
+                    <li class="page-item"> <a href="?page={{ users.next_page_number }}" class="btn btn-outline-info">Next</a></li>
+                    <li class="page-item"> <a href="?page={{ users.paginator.num_pages }}" class="btn btn-outline-info">Last &raquo;</a></li>
+                {% endif %}
+            </span>
+        </div>
+    </nav>
+</div>
+{% endblock %}

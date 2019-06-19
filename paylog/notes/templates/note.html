@@ -1,0 +1,36 @@
+{{% extends 'base.html' %}
+{%block content%}
+    <div class="panel panel-success ">
+        <div class="panel-heading text-center">
+                   <form method="POST">
+                      {% csrf_token %}
+                      <div class="form-row">
+                        <div class="col-md-2"></div>
+                        <div class="form-group col-md-7">
+                          <input type="text" name="entered_note" class="form-control" placeholder="Enter your note..." required>
+                        </div>
+                        <div class="col-md-3 text-left">
+                          <button type="submit" class="btn btn-success btn-md">Save</button>
+                        </div>
+                      </div>
+                    </form>
+        </div>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="panel-body text-center">
+                <div class="wrapper clearfix">
+                        <ul>
+                            {% for note in my_notes %}
+                                <aside class="note-wrap ">
+                                    <button type= "submit" name="delete_note" value="{{note.id}}" class="btn btn-success btn-sm mb-3">Done
+                                        <i class="fa fa-trash"></i>
+                                    </button><br>
+                                    {{note.note}}
+                                </aside>
+                            {% endfor %}
+                        </ul>
+                </div>
+            </div>
+        </form>
+    </div>
+{%endblock%}
