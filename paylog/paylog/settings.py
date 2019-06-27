@@ -25,7 +25,7 @@ SECRET_KEY = '0bygazayh=6!_p_5!^l5gis$ob9r95#ly+8&-_a^8cplp+gj8f'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com']
+ALLOWED_HOSTS = ['127.0.0.1', '.heroku.com']
 
 
 # Application definition
@@ -129,8 +129,12 @@ LOGIN_URL = 'login'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+# static files settings
+STATIC_URL = '/static/'
+# location where you will store your static files like bootstrap
 STATICFILES_DIRS = [
-    # os.path.join(BASE_DIR, '/static/'),
-    os.path.join(BASE_DIR, '/static/css/base.css')
+   os.path.join(BASE_DIR, "static"),
 ]
+# location where django collect all static files
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
